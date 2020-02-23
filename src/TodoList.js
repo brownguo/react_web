@@ -1,4 +1,5 @@
 import React,{ Fragment, Component }from 'react';
+import './style.css'
 // Fragment 占位符，影藏最外层的dom标签
 /*
 function TodoList() {
@@ -21,7 +22,7 @@ class TodoList extends Component{
         super(props);
         this.state  = {
             inputValue: '',
-            list:['第一课,下标为0']
+            list:['默认第一个UL！']
         }
     }
 
@@ -29,7 +30,14 @@ class TodoList extends Component{
         return (
             <Fragment>
                 <div>
+                    {/*这里是注释！！！*/}
+                    {
+                        //单行注释，好像很傻逼耶！
+                    }
+                    <label htmlFor="inputArea">输入内容</label>
                     <input
+                        id="inputArea"
+                        className='input'
                         value={this.state.inputValue}
                         onChange={this.handleInputChange.bind(this)}
                     />
@@ -42,8 +50,8 @@ class TodoList extends Component{
                             return <li
                                 key={index}
                                 onClick={this.handleItemDelete.bind(this,index)}
+                                dangerouslySetInnerHTML={{__html:item}}
                             >
-                                {item}
                             </li>
                         })
                     }
@@ -67,8 +75,8 @@ class TodoList extends Component{
     }
 
     handleItemDelete(idx){
-                const list = [...this.state.list];
-                list.splice(idx,1);
+        const list = [...this.state.list];
+        list.splice(idx,1);
         this.setState({
             list:list,
         })
