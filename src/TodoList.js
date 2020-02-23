@@ -1,4 +1,6 @@
 import React,{ Fragment, Component }from 'react';
+import TodoItem from './TodoItem'
+
 import './style.css'
 // Fragment 占位符，影藏最外层的dom标签
 /*
@@ -47,12 +49,23 @@ class TodoList extends Component{
                 <ul>
                     {
                         this.state.list.map((item,index) => {
-                            return <li
-                                key={index}
-                                onClick={this.handleItemDelete.bind(this,index)}
-                                dangerouslySetInnerHTML={{__html:item}}
-                            >
-                            </li>
+                            return (
+                                <Fragment>
+                                    <TodoItem
+                                        content={item}
+                                        idx={index}
+                                        deleteItem={this.handleItemDelete.bind(this)}
+                                    />
+                                    {/*
+                                       <li
+                                        key={index}
+                                        onClick={this.handleItemDelete.bind(this,index)}
+                                        dangerouslySetInnerHTML={{__html:item}}
+                                    >
+                                    </li>
+                                    */}
+                                </Fragment>
+                            )
                         })
                     }
                 </ul>
@@ -61,7 +74,6 @@ class TodoList extends Component{
     }
 
     handleInputChange(e){
-        //alert(e.target.value);
         this.setState({
             inputValue: e.target.value,
         })
