@@ -16,20 +16,41 @@ function TodoList() {
 }*/
 
 class TodoList extends Component{
+
+    constructor(props){
+        super(props);
+        this.state  = {
+            inputValue: '',
+            list:[]
+        }
+    }
+
     render() {
         return (
             <Fragment>
                 <div>
-                    <input/> <button>Go!!!</button>
+                    <input
+                        value={this.state.inputValue}
+                        onChange={this.handleInputChange.bind(this)}
+                    />
+                    <button>Go!!!</button>
                 </div>
 
                 <ul>
-                    <li>Go!</li>
+                    <li>Go1</li>
                     <li>Go!!</li>
                 </ul>
             </Fragment>
         )
     }
+
+    handleInputChange(e){
+        //alert(e.target.value);
+        this.setState({
+            inputValue: e.target.value,
+        })
+    }
+
 }
 
 export default TodoList;
