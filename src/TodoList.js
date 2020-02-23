@@ -21,7 +21,7 @@ class TodoList extends Component{
         super(props);
         this.state  = {
             inputValue: '',
-            list:[]
+            list:['第一课,下标为0']
         }
     }
 
@@ -33,12 +33,20 @@ class TodoList extends Component{
                         value={this.state.inputValue}
                         onChange={this.handleInputChange.bind(this)}
                     />
-                    <button>Go!!!</button>
+                    <button onClick={this.handleButtonClick.bind(this)}>添加</button>
                 </div>
 
                 <ul>
-                    <li>Go1</li>
-                    <li>Go!!</li>
+                    {
+                        this.state.list.map((item,index) => {
+                            return <li
+                                key={index}
+                                onClick={this.handleItemDelete.bind(this,index)}
+                            >
+                                {item}
+                            </li>
+                        })
+                    }
                 </ul>
             </Fragment>
         )
@@ -51,6 +59,20 @@ class TodoList extends Component{
         })
     }
 
+    handleButtonClick(e){
+        this.setState({
+            list:[...this.state.list, this.state.inputValue],
+            inputValue: ''
+        })
+    }
+
+    handleItemDelete(idx){
+                const list = [...this.state.list];
+                list.splice(idx,1);
+        this.setState({
+            list:list,
+        })
+    }
 }
 
 export default TodoList;
