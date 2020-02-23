@@ -3,20 +3,6 @@ import TodoItem from './TodoItem'
 
 import './style.css'
 // Fragment 占位符，影藏最外层的dom标签
-/*
-function TodoList() {
-    return (
-        <Fragment>
-            <div>
-                <input/> <button>Go!!!</button>
-            </div>
-
-            <ul>
-                <li>First!</li>
-            </ul>
-        </Fragment>
-    )
-}*/
 
 class TodoList extends Component{
 
@@ -32,10 +18,6 @@ class TodoList extends Component{
         return (
             <Fragment>
                 <div>
-                    {/*这里是注释！！！*/}
-                    {
-                        //单行注释，好像很傻逼耶！
-                    }
                     <label htmlFor="inputArea">输入内容</label>
                     <input
                         id="inputArea"
@@ -56,14 +38,6 @@ class TodoList extends Component{
                                         idx={index}
                                         deleteItem={this.handleItemDelete.bind(this)}
                                     />
-                                    {/*
-                                       <li
-                                        key={index}
-                                        onClick={this.handleItemDelete.bind(this,index)}
-                                        dangerouslySetInnerHTML={{__html:item}}
-                                    >
-                                    </li>
-                                    */}
                                 </Fragment>
                             )
                         })
