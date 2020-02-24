@@ -46,9 +46,14 @@ class TodoList extends Component{
     componentDidMount() {
         axios.get('/api/todolist')
             .then((res) => {
-                this.setState(() => ({
-                    list:[...res.data]
-                }));
+                console.log(res);
+                if(res.status === 200 && res.statusText === 'OK')
+                {
+                    this.setState(() => ({
+                        list:[...res.data]
+                    }));
+                }
+
             })
             .catch(() => {console.log('error')})
     }
