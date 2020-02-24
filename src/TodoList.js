@@ -1,6 +1,6 @@
 import React,{ Fragment, Component }from 'react';
 import TodoItem from './TodoItem'
-
+import axios from 'axios'
 import './style.css'
 
 class TodoList extends Component{
@@ -42,6 +42,12 @@ class TodoList extends Component{
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('componentDidUpdate:组件数据完成更新之后执行');
     }*/
+
+    componentDidMount() {
+        axios.get('/api/todolist')
+            .then(() => {alert('success')})
+            .catch(() => {alert('error')})
+    }
 
     render() {
         return (
