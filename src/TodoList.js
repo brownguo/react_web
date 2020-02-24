@@ -45,10 +45,13 @@ class TodoList extends Component{
 
     componentDidMount() {
         axios.get('/api/todolist')
-            .then(() => {alert('success')})
-            .catch(() => {alert('error')})
+            .then((res) => {
+                this.setState(() => ({
+                    list:[...res.data]
+                }));
+            })
+            .catch(() => {console.log('error')})
     }
-
     render() {
         return (
             <Fragment>
