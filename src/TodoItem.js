@@ -7,8 +7,18 @@ class TodoItem extends Component{
         this.handleClick = this.handleClick.bind(this)
     }
 
+
+    /*
+    componentWillReceiveProps(nextProps, nextContext) {
+        console.log('componentWillReceiveProps:当组件从父组件接收了参数，只要父组件Render【重新】被执行就会自动运行。');
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount:当组件即将被从页面剔除的时候，会被执行。例如:删除一个dom');
+    }*/
+
     render() {
-        const {content,test} = this.props
+        const {content,test} = this.props;
         return (
             <li
                 onClick={this.handleClick}

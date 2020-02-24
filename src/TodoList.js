@@ -9,13 +9,38 @@ class TodoList extends Component{
         super(props);
         this.state  = {
             inputValue: '',
-            list:['默认第一个UL！']
+            list:[]
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
         this.handleItemDelete  = this.handleItemDelete.bind(this);
     }
+
+    //生命周期函数：在组件执行的某一时刻会自动执行的函数。
+
+    //在组件即将被挂再到页面的时刻自动执行，组件第一次加载的时候会执行
+    /*
+    componentWillMount() {
+        console.log('componentWillMount：开始加载页面~')
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount：页面加载完了~')
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log('shouldComponentUpdate：是否需要执行？True => 组件即将变更的时候执行');
+        return true; //false 都不会执行
+    }
+
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        console.log('componentWillUpdate：组件被更新之前，会自动执行');
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('componentDidUpdate:组件数据完成更新之后执行');
+    }*/
 
     render() {
         return (
