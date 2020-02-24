@@ -17,7 +17,20 @@ class TodoItem extends Component{
         console.log('componentWillUnmount:当组件即将被从页面剔除的时候，会被执行。例如:删除一个dom');
     }*/
 
+    //当我组件需要被更新的时候，先要询问我一下，是否需要更新？
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if(nextContext.content !== this.props.content)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     render() {
+        console.log('Child Compnet!');
         const {content,test} = this.props;
         return (
             <li
@@ -43,4 +56,5 @@ TodoItem.propTypes = {
 TodoItem.defaultProps = {
     test:'Hello!!'
 };
+
 export default TodoItem;

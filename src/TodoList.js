@@ -25,6 +25,7 @@ class TodoList extends Component{
         console.log('componentWillMount：开始加载页面~')
     }
 
+    //Ajax请求写在这里
     componentDidMount() {
         console.log('componentDidMount：页面加载完了~')
     }
@@ -79,6 +80,7 @@ class TodoList extends Component{
     }
 
     handleInputChange(e){
+        //const value = e.target.value;
         const value = this.input.value;
         this.setState(() => ({
             inputValue: value
