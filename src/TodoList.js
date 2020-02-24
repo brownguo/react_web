@@ -1,6 +1,5 @@
 import React,{ Fragment, Component }from 'react';
 import TodoItem from './TodoItem'
-import Test from './Test';
 
 import './style.css'
 
@@ -28,15 +27,15 @@ class TodoList extends Component{
                         className='input'
                         value={this.state.inputValue}
                         onChange={this.handleInputChange}
+                        ref={(input) => {this.input = input}}
                     />
                     <button onClick={this.handleButtonClick}>添加</button>
                 </div>
 
-                <ul>
+                <ul ref={(ul) => {this.ul = ul}}>
                     {this.getTodoItem()}
                 </ul>
 
-                <Test content={this.state.inputValue} />
             </Fragment>
         )
     }
@@ -55,7 +54,7 @@ class TodoList extends Component{
     }
 
     handleInputChange(e){
-        const value = e.target.value;
+        const value = this.input.value;
         this.setState(() => ({
             inputValue: value
         }))
@@ -65,7 +64,9 @@ class TodoList extends Component{
         this.setState((prevState) => ({
             list:[...prevState.list,prevState.inputValue],
             inputValue:'',
-        }))
+        }),() => {
+            console.log(this.ul.querySelectorAll('li').length);
+        })
     }
 
     handleItemDelete(idx){

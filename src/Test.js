@@ -5,5 +5,4 @@ class Test extends Component{
         return <div>{this.props.content}</div>
     }
 }
-
 export default Test;
