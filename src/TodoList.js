@@ -1,8 +1,6 @@
 import React,{ Fragment, Component }from 'react';
 import TodoItem from './TodoItem'
-
 import './style.css'
-// Fragment 占位符，影藏最外层的dom标签
 
 class TodoList extends Component{
 
@@ -11,7 +9,11 @@ class TodoList extends Component{
         this.state  = {
             inputValue: '',
             list:['默认第一个UL！']
-        }
+        };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.handleItemDelete  = this.handleItemDelete.bind(this);
     }
 
     render() {
@@ -23,48 +25,50 @@ class TodoList extends Component{
                         id="inputArea"
                         className='input'
                         value={this.state.inputValue}
-                        onChange={this.handleInputChange.bind(this)}
+                        onChange={this.handleInputChange}
                     />
-                    <button onClick={this.handleButtonClick.bind(this)}>添加</button>
+                    <button onClick={this.handleButtonClick}>添加</button>
                 </div>
 
                 <ul>
-                    {
-                        this.state.list.map((item,index) => {
-                            return (
-                                <Fragment>
-                                    <TodoItem
-                                        content={item}
-                                        idx={index}
-                                        deleteItem={this.handleItemDelete.bind(this)}
-                                    />
-                                </Fragment>
-                            )
-                        })
-                    }
+                    {this.getTodoItem()}
                 </ul>
             </Fragment>
         )
     }
 
+    getTodoItem() {
+          return this.state.list.map((item,index) => {
+              return (
+                      <TodoItem
+                          key={index}
+                          content={item}
+                          idx={index}
+                          deleteItem={this.handleItemDelete}
+                      />
+              )
+          })
+    }
+
     handleInputChange(e){
-        this.setState({
-            inputValue: e.target.value,
-        })
+        const value = e.target.value;
+        this.setState(() => ({
+            inputValue: value
+        }))
     }
 
     handleButtonClick(e){
-        this.setState({
-            list:[...this.state.list, this.state.inputValue],
-            inputValue: ''
-        })
+        this.setState((prevState) => ({
+            list:[...prevState.list,prevState.inputValue],
+            inputValue:'',
+        }))
     }
 
     handleItemDelete(idx){
-        const list = [...this.state.list];
-        list.splice(idx,1);
-        this.setState({
-            list:list,
+        this.setState((prevState) => {
+            const list = [...prevState.list];
+            list.splice(idx,1);
+            return {list}
         })
     }
 }

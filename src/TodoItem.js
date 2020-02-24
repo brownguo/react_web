@@ -5,18 +5,21 @@ class TodoItem extends Component{
         super(props);
         this.handleClick = this.handleClick.bind(this)
     }
+
     render() {
+        const {content} = this.props
         return (
             <li
                 onClick={this.handleClick}
                 key={this.props.idx}
-                dangerouslySetInnerHTML={{__html:this.props.content}}
+                dangerouslySetInnerHTML={{__html:content}}
             >
             </li>)
     }
 
     handleClick(){
-        this.props.deleteItem(this.props.idx)
+        const {deleteItem,idx} = this.props;
+        deleteItem(idx);
     }
 }
 
