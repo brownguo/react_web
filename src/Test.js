@@ -7,12 +7,15 @@ class Test extends Component{
             inputValue:'',
             list:['北京','上海','呼和浩特']
         }
+
+        this.handleInput = this.handleInput.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
     }
     render() {
         return (
             <Fragment>
-                <input value={this.state.inputValue} onChange={this.handleInput.bind(this)} />
-                <button onClick={this.handleButtonClick.bind(this)}>提交</button>
+                <input value={this.state.inputValue} onChange={this.handleInput} />
+                <button onClick={this.handleButtonClick}>提交</button>
                 <ul>
                     {
                         this.state.list.map((item,index) =>{
