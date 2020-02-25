@@ -21,7 +21,7 @@ class App extends Component{
 
     handleToggle(){
         this.setState({
-            show: this.state.show ? false : true
+            show: this.state.show ? false : true,
         })
     }
 }
