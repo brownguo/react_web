@@ -1,11 +1,29 @@
-import React from 'react';
+import React ,{ Component,Fragment}from 'react';
+import './app.css';
+class App extends Component{
 
-function App() {
-  return (
-    <div className="App">
-        Hello BrownGuo!111222333
-    </div>
-  );
+    constructor(props){
+        super(props);
+        this.state = {
+            show:true,
+        };
+        this.handleToggle = this.handleToggle.bind(this);
+    }
+
+    render() {
+        return (
+            <Fragment>
+                <div className={this.state.show ? 'show' : 'hide'}>Hello Toggle!</div>
+                <button onClick={this.handleToggle}>Toogle</button>
+            </Fragment>
+        );
+    }
+
+    handleToggle(){
+        this.setState({
+            show: this.state.show ? false : true
+        })
+    }
 }
 
 export default App;
