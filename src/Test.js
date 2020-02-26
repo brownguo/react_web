@@ -6,7 +6,7 @@ class Test extends Component{
         this.state = {
             inputValue:'',
             list:['北京','上海','呼和浩特']
-        }
+        };
 
         this.handleInput = this.handleInput.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -31,14 +31,14 @@ class Test extends Component{
 
     handleInput(e){
         this.setState({
-            inputValue:e.target.value
+            inputValue:e.target.value;
         })
     }
 
     handleDelete(index){
         this.setState((prevState) =>{
             const list = [...prevState.list];
-            list.splice(index,1)
+            list.splice(index,1);
             return {list}
         })
     }
