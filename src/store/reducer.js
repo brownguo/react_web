@@ -28,5 +28,12 @@ export default (state = defaultState,action) => {
         return newState;
     }
 
+    if(action.type === 'delete_todo_item'){
+        const newState = JSON.parse(JSON.stringify(state));
+        newState.list.splice(action.idx,1);
+        return newState;
+    }
+
+    //store的默认是，这里的state也就是defaultState
     return state;
 }

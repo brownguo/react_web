@@ -12,6 +12,7 @@ class AntdLayoutTodolist  extends Component{
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
+        //this.handleDeleteItem  = this.handleDeleteItem.bind(this);
         //监听store
         store.subscribe(this.handleStoreChange);
     }
@@ -31,8 +32,8 @@ class AntdLayoutTodolist  extends Component{
                     style={{marginTop :'10px',width:'300px'}}
                     bordered
                     dataSource={this.state.list}
-                    renderItem={item => (
-                        <List.Item>
+                    renderItem={(item,idx) => (
+                        <List.Item onClick={this.handleDeleteItem.bind(this,idx)}>
                             {item}
                         </List.Item>
                     )}
@@ -55,6 +56,14 @@ class AntdLayoutTodolist  extends Component{
     handleButtonClick(){
         const action = {
             type:'add_todoitem',
+        };
+        store.dispatch(action);
+    }
+
+    handleDeleteItem(idx){
+        const action = {
+            type:'delete_todo_item',
+            idx:idx
         };
         store.dispatch(action);
     }
