@@ -49,6 +49,7 @@ class AntdLayoutTodolist  extends Component{
         store.dispatch(action);
     }
 
+    //监听store变化，store数据由reducer返回。
     handleStoreChange(){
         this.setState(store.getState());
     }

@@ -1,6 +1,7 @@
 
 //数据仓库
 const defaultState = {
+    //这里的input在onChange触发一次就改变一次。
     inputValue: '来自Reducer的默认值~',
     list:[
         '山川异域，风月同天。',
