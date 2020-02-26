@@ -9,14 +9,23 @@ class AntdLayoutTodolist  extends Component{
     constructor(props){
         super(props);
         this.state = store.getState();
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleStoreChange = this.handleStoreChange.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
+        //监听store
+        store.subscribe(this.handleStoreChange);
     }
 
     render() {
         return (
             <div>
                 <div>
-                    <Input value={this.state.inputValue} style={{width:'300px',marginRight:'10px'}}/>
-                    <Button type="primary">提交</Button>
+                    <Input
+                        value={this.state.inputValue}
+                        style={{width:'300px',marginRight:'10px'}}
+                        onChange={this.handleInputChange}
+                    />
+                    <Button type="primary" onClick={this.handleButtonClick}>提交</Button>
                 </div>
                 <List
                     style={{marginTop :'10px',width:'300px'}}
@@ -30,6 +39,24 @@ class AntdLayoutTodolist  extends Component{
                 />
             </div>
         )
+    }
+    handleInputChange(e){
+        const action = {
+            type: 'change_input_value',
+            value: e.target.value
+        };
+        store.dispatch(action);
+    }
+
+    handleStoreChange(){
+        this.setState(store.getState());
+    }
+
+    handleButtonClick(){
+        const action = {
+            type:'add_todoitem',
+        };
+        store.dispatch(action);
     }
 }
 
