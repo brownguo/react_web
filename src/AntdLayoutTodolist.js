@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 
 import store from './store/index';
 import {ADDTODOITEM,CHANGE_INPUT_VALUE,DELETE_TODO_ITEM} from './store/actionTypes';
+import {getAddItemAction,getDeleteTodoItem,getInputChangeAction} from './store/actionCreators';
 
 class AntdLayoutTodolist  extends Component{
 
@@ -43,10 +44,7 @@ class AntdLayoutTodolist  extends Component{
         )
     }
     handleInputChange(e){
-        const action = {
-            type: CHANGE_INPUT_VALUE,
-            value: e.target.value
-        };
+        const action = getInputChangeAction(e.target.value);
         store.dispatch(action);
     }
 
@@ -56,17 +54,12 @@ class AntdLayoutTodolist  extends Component{
     }
 
     handleButtonClick(){
-        const action = {
-            type:ADDTODOITEM,
-        };
+        const action = getAddItemAction();
         store.dispatch(action);
     }
 
     handleDeleteItem(idx){
-        const action = {
-            type:DELETE_TODO_ITEM,
-            idx:idx
-        };
+        const action = getDeleteTodoItem(idx);
         store.dispatch(action);
     }
 }
