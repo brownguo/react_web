@@ -43,7 +43,7 @@ export default (state = defaultState,action) => {
 
     if(action.type === INIT_LIST){
         const newState = JSON.parse(JSON.stringify(state));
-        newState.list.push(action.data);
+        newState.list = newState.list.concat(newState.list,action.data);
         return newState;
     }
 
