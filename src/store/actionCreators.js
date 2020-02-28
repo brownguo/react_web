@@ -13,5 +13,3 @@ export const getDeleteTodoItem = (idx)=>({
     type:DELETE_TODO_ITEM,
     idx:idx
 });
-
-
