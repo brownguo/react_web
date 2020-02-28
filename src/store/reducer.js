@@ -1,4 +1,4 @@
-import {ADDTODOITEM,CHANGE_INPUT_VALUE,DELETE_TODO_ITEM} from './actionTypes';
+import {ADDTODOITEM,CHANGE_INPUT_VALUE,DELETE_TODO_ITEM,INIT_LIST} from './actionTypes';
 
 //数据仓库
 const defaultState = {
@@ -38,6 +38,12 @@ export default (state = defaultState,action) => {
     if(action.type === DELETE_TODO_ITEM){
         const newState = JSON.parse(JSON.stringify(state));
         newState.list.splice(action.idx,1);
+        return newState;
+    }
+
+    if(action.type === INIT_LIST){
+        const newState = JSON.parse(JSON.stringify(state));
+        newState.list.push(action.data);
         return newState;
     }
 

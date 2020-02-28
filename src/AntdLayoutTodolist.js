@@ -1,8 +1,9 @@
 import React,{ Component } from 'react';
 import AntdLayoutTodolistUI from './AntdLayoutTodolistUI';
 import store from './store/index';
+import {getAddItemAction,getDeleteTodoItem,getInputChangeAction,initListAction} from './store/actionCreators';
+import axios from 'axios';
 
-import {getAddItemAction,getDeleteTodoItem,getInputChangeAction} from './store/actionCreators';
 
 class AntdLayoutTodolist  extends Component{
 
@@ -28,6 +29,17 @@ class AntdLayoutTodolist  extends Component{
             />
         )
     }
+
+    componentDidMount() {
+        axios.get('/api/todolist')
+            .then((res) => {
+                const data = res.data;
+                const action = initListAction(data);
+                store.dispatch(action);
+            })
+            .catch(() => {console.log('error')})
+    }
+
     handleInputChange(e){
         const action = getInputChangeAction(e.target.value);
         store.dispatch(action);
