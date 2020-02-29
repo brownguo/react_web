@@ -17,7 +17,7 @@ const defaultState = {
 export default (state = defaultState,action) => {
 
     if(action.type === CHANGE_INPUT_VALUE){
-        //reducer 可以接受state，不能修改state
+        //reducer 可以接受state，不能修改state，所以这里要先复制一下原有的State
         const newState = JSON.parse(JSON.stringify(state));
         newState.inputValue = action.value;
         return newState;
@@ -43,7 +43,7 @@ export default (state = defaultState,action) => {
 
     if(action.type === INIT_LIST){
         const newState = JSON.parse(JSON.stringify(state));
-        newState.list = newState.list.concat(newState.list,action.data);
+        newState.list.push(action.data);
         return newState;
     }
 
