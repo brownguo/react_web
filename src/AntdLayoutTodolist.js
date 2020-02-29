@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import AntdLayoutTodolistUI from './AntdLayoutTodolistUI';
 import store from './store/index';
-import {getAddItemAction,getDeleteTodoItem,getInputChangeAction,getApiTodoList} from './store/actionCreators';
+import {getAddItemAction, getDeleteTodoItem, getInputChangeAction, getInitListAction} from './store/actionCreators';
 
 
 class AntdLayoutTodolist  extends Component{
@@ -30,7 +30,7 @@ class AntdLayoutTodolist  extends Component{
     }
 
     componentDidMount() {
-        const action = getApiTodoList();
+        const action = getInitListAction();
         store.dispatch(action);
     }
 
