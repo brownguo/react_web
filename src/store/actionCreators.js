@@ -27,7 +27,6 @@ export const getApiTodoList = () =>{
                 const data = res.data;
                 const action = initListAction(data);
                 dispatch(action);
-                console.log(data);
             })
             .catch(() => {console.log('error')})
     }

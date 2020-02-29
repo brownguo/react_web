@@ -18,7 +18,7 @@ const AntdLayoutTodolistUI = (props) => {
                 bordered
                 dataSource={props.list}
                 renderItem={(item,idx) => (
-                    <List.Item onClick={(index) => props.handleDeleteItem(idx)}>
+                    <List.Item onClick={() => props.handleDeleteItem(idx)}>
                         {item}
                     </List.Item>
                 )}
